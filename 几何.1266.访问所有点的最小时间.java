@@ -24,14 +24,14 @@
 class Solution {
     public int minTimeToVisitAllPoints(int[][] points) {
         if (points.length == 1) return 0;
-		int sum = 0;
-		int preX = points[0][0];
-		int preY = points[0][1];
-		for (int i = 1; i < points.length; i++) {
-			sum += Math.max(Math.abs(points[i][0]-preX), Math.abs(points[i][1]-preY));
-			preX = points[i][0];
-			preY = points[i][1];
-		}
-		return sum;
+	int sum = 0;
+	int preX = points[0][0];
+	int preY = points[0][1];
+	for (int i = 1; i < points.length; i++) {
+		sum += Math.max(Math.abs(points[i][0]-preX), Math.abs(points[i][1]-preY));
+		preX = points[i][0];
+		preY = points[i][1];
+	}
+	return sum;
     }
 }
