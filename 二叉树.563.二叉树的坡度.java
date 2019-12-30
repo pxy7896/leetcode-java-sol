@@ -41,7 +41,7 @@ class Solution {
         if (root == null) return 0;
         int left = findTiltHelper(root.left);
         int right = findTiltHelper(root.right);
-        sum += Math.abs(left - right);
-        return left+right+root.val; // 这里不能返回root.val
+        sum += Math.abs(left - right); // 这里没有写总和，是因为root.val一定会被减掉
+        return left+right+root.val; // 这里不能返回root.val，因为算的是左右总和之差总和
     }
 }
