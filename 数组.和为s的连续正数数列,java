@@ -1,0 +1,54 @@
+输入一个正整数 target ，输出所有和为 target 的连续正整数序列（至少含有两个数）。
+序列内的数字由小到大排列，不同序列按照首个数字从小到大排列。
+
+示例 1：
+输入：target = 9
+输出：[[2,3,4],[4,5]]
+
+示例 2：
+输入：target = 15
+输出：[[1,2,3,4,5],[4,5,6],[7,8]]
+
+限制：
+	1 <= target <= 10^5
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+================解法=================
+由等差数列公式：Sn = na1 + n(n-1)*d/2，
+可知a1 = Sn/n - (n-1)/2
+n从2开始，当a1<1时停止。当然，不是每个a1都是整数的，所以要跳过a-(int)a >= 0.001的情况。
+另外，返回的是二维数组，二维数组每行列数可以不同的，请注意！ 
+
+class Solution {
+    public int[][] findContinuousSequence(int target) {
+        List<List<Integer>> t = new ArrayList<>();
+		int n = 2;
+		while (true) {
+			double a = target*1.0/n - (n-1)/2.0;
+			if (a < 1)
+				break;
+			if ( a-(int)a >= 0.001 ) {  //必须设置的很小
+				n++;
+				continue;
+			}
+			List<Integer> temp = new ArrayList<>();
+			int b = (int)a; // 现在找到了a1，直接迭代n次即可
+			for (int i = 0; i < n; i++) {
+				temp.add(b++);
+			}
+			t.add(temp);
+			n ++;
+		}
+		int[][] ans = new int[t.size()][]; // 填入结果数组
+		for (int i = 0; i < ans.length; i++) {
+			List<Integer> temp = t.get(t.size()-1-i);
+			int[] c = new int[temp.size()];
+			for (int j = 0; j < temp.size(); j++)
+				c[j] = temp.get(j);
+			ans[i] = c;
+		}
+		return ans;
+    }
+}
