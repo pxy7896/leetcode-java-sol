@@ -37,3 +37,17 @@ class Solution {
         return dp[nums.length];
     }
 }
+=======================另一种解法=======================
+只用变量记住值就可以了
+class Solution {
+    public int rob(int[] nums) {
+        int a = 0;
+        int b = 0;
+        for (int i : nums) {
+            int c = Math.max(a+i, b);
+            a = b;
+            b = c;
+        }
+        return b;
+    }
+}
