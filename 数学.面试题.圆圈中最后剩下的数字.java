@@ -17,6 +17,8 @@
 链接：https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 ======================解法===========================
+最后只剩1个人，它的下标为0，那么上一次被杀掉的，下标应该是(last+m)%2
+反推
 class Solution {
     public int lastRemaining(int n, int m) {
         int last = 0;
